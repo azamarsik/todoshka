@@ -1,7 +1,9 @@
-from fastapi import FastAPI, Response
-import json
-from http import HTTPStatus
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI
+from routers import tasks
+
+app = FastAPI()
+app.include_router(tasks.router, prefix="/api/v1")
+
 
 
 app = FastAPI(title="todoshka", version = "0.1.0")
@@ -22,4 +24,3 @@ def docs():
     </html>
     """
     return Response(content = html_content, status_code = HTTPStatus.OK)
-
